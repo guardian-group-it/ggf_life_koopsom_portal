@@ -1,0 +1,1 @@
+# ggf_life_koopsom_portal
