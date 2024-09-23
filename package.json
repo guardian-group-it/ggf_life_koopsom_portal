@@ -1,0 +1,33 @@
+{
+  "name": "ggf_life_koopsom_portal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guardian-group-it/ggf_life_koopsom_portal.git"
+  },
+  "author": "Nathaniel Martina",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/guardian-group-it/ggf_life_koopsom_portal/issues"
+  },
+  "homepage": "https://github.com/guardian-group-it/ggf_life_koopsom_portal#readme",
+  "dependencies": {
+    "axios": "^1.7.7",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "express-handlebars": "^8.0.1",
+    "lodash.merge": "^4.6.2",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.6",
+    "odbc": "^2.4.9",
+    "qs": "^6.13.0"
+  }
+}
