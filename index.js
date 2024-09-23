@@ -6,9 +6,6 @@ const http = require("http");
 const path = require("path");
 const bodyParser = require("body-parser");
 const app = express();
-const axios = require("axios");
-const qs = require('qs'); 
-const odbc = require("odbc");
 const fs = require("fs");
 require("dotenv").config();
 
@@ -191,6 +188,7 @@ app.post("/send_to_api", async (req, res) => {
 
   console.log(outputJson);
   getTokenAndSendRequest(outputJson)
+  res.json({status:"202"})
   //send json to API
   async function getTokenAndSendRequest(output) {
     try {
@@ -242,7 +240,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // const server = http.createServer(app);
 
-app.set("port", process.env.PORT || 8085);
+app.set("port", process.env.PORT || 8087);
 
 server.listen(app.get("port"), () => {
   console.log("server on port", app.get("port"));
