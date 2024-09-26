@@ -7,6 +7,8 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const app = express();
 const fs = require("fs");
+const odbc = require('odbc');
+const qs = require('qs');
 require("dotenv").config();
 
 const server = http.createServer(app);
@@ -55,7 +57,8 @@ app.use(bodyParser.json());
 
 app.post("/send_to_api", async (req, res) => {
   const resultJson = req.body;
-  var gnummer, datenow;
+  var gnummer = resultJson.Employer; 
+  var datenow;
 
   //get total amount of all single premium
   const totalamount = resultJson.data.reduce((total, user) => {
@@ -63,26 +66,26 @@ app.post("/send_to_api", async (req, res) => {
   }, 0);
 
   //find Gnummber in Compass based on the name
-  try {
-    // Open a connection to the database
-    // prod "Dsn=compassodbc;uid=UIPATH;pwd=Welcome123#"
-    const connection = await odbc.connect(
-      "Dsn=compasstest;uid=UIPATH_ADV;pwd=XNIOEpA4JR"
-    );
+  // try {
+  //   // Open a connection to the database
+  //   // prod "Dsn=compassodbc;uid=UIPATH;pwd=Welcome123#"
+  //   const connection = await odbc.connect(
+  //     "Dsn=compasstest;uid=UIPATH_ADV;pwd=XNIOEpA4JR"
+  //   );
 
-    // Perform a query
-    const result = await connection.query(
-      `SELECT CONT_NO FROM PORTAL.PTL_CASE_DATA WHERE PLAN_NM = '${resultJson.Employer}'`
-    );
+  //   // Perform a query
+  //   const result = await connection.query(
+  //     `SELECT CONT_NO FROM PORTAL.PTL_CASE_DATA WHERE PLAN_NM = '${resultJson.Employer}'`
+  //   );
 
-    gnummer = result[0].CONT_NO;
-    // res.json({ wn: resultmem.length, wg: resultcomp.length });
+  //   gnummer = result[0].CONT_NO;
+  //   // res.json({ wn: resultmem.length, wg: resultcomp.length });
 
-    // Close the connection
-    await connection.close();
-  } catch (error) {
-    console.error("Error connecting to the database:", error);
-  }
+  //   // Close the connection
+  //   await connection.close();
+  // } catch (error) {
+  //   console.error("Error connecting to the database:", error);
+  // }
 
   //get date
   function getFormattedDate() {
@@ -230,7 +233,6 @@ app.post("/send_to_api", async (req, res) => {
       console.error('Error:', error.response ? error.response.data : error.message);
     }
   }
-  
 });
 
 
