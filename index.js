@@ -7,8 +7,8 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const app = express();
 const fs = require("fs");
-const odbc = require('odbc');
-const qs = require('qs');
+// const odbc = require('odbc');
+// const qs = require('qs');
 require("dotenv").config();
 
 const server = http.createServer(app);
