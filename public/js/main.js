@@ -91,11 +91,18 @@ document.getElementById("sub_button").addEventListener("click", function () {
   for (let i = 3; i < sheetData.length; i++) {
     const rowData = {};
     headers.forEach((header, index) => {
-      rowData[header] = sheetData[i][index];
+      const cellValue = sheetData[i][index];
+      // Check if the value is not empty, null, or undefined
+      if (cellValue !== undefined && cellValue !== null && cellValue !== "") {
+        rowData[header] = cellValue;
+      }
     });
-    dataRows.push(rowData);
-  }
 
+    // Only push non-empty rowData
+    if (Object.keys(rowData).length > 0) {
+      dataRows.push(rowData);
+    }
+  }
   // Create JSON object
   resultJson = {
     Employer: C1Value,
